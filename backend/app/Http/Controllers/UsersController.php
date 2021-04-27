@@ -17,6 +17,7 @@ class UsersController extends Controller
       $email = "leo@example.com";
 
       $data = [
+        'name' => $name,
         'sex' => 'male',
         'birthday' => '1998-02-10'
       ];
@@ -62,9 +63,16 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+      $data = [
+        'Leo' => 'Leo',
+        'Umi' => 'Umi'
+      ];
+
+      return view('users.index', [
+        'users' => $data[$name] ?? 'User '.$name.' does not exitst.'
+      ]);
     }
 
     /**
