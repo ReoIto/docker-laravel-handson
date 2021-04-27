@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\homeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,22 @@ use App\Http\Controllers\UsersController;
 |
 */
 
+// Route to top page
+Route::get('/', [homeController::class, 'index']);
+
 //Laravel 8 (new way)
 Route::get('/users', [UsersController::class, 'index']);
-Route::get('/users/about', [UsersController::class, 'about']);
+
+// Pattern is integer(multiple)
+// Route::get('/users/{id}',
+//   [UsersController::class, 'show'])->where('id', '[0-9]+');
+
+// Pattern is string
+Route::get('/users/{name}/{id}',
+  [UsersController::class, 'show'])->where([
+    'name' => '[a-z]+',
+    'id' => '[0-9]+'
+  ]);
 
 
 

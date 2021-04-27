@@ -13,12 +13,27 @@ class UsersController extends Controller
      */
     public function index()
     {
-      // viewsディレのusersフォルダーのindexファイルを開く
-      return view('users.index');
-    }
+      $name = "Leo";
+      $email = "leo@example.com";
 
-    public function about() {
-      return 'About us page';
+      $data = [
+        'name' => $name,
+        'sex' => 'male',
+        'birthday' => '1998-02-10'
+      ];
+
+      // viewsディレのusersフォルダーのindexファイルを開く
+      // return view('users.index');
+
+      // cpmpact method
+      // return view('users.index', compact('name', 'email'));
+
+      // with method
+      // return view('users.index')->with('name', $name);
+      return view('users.index')->with('data', $data);
+
+      // Directory in the view
+      //return view('users.index', ['data' => $data]);
     }
 
     /**
@@ -48,9 +63,16 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+      $data = [
+        'Leo' => 'Leo',
+        'Umi' => 'Umi'
+      ];
+
+      return view('users.index', [
+        'users' => $data[$name] ?? 'User '.$name.' does not exitst.'
+      ]);
     }
 
     /**
