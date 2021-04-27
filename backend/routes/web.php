@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\homeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\UsersController;
 Route::get('/users', [UsersController::class, 'index']);
 Route::get('/users/about', [UsersController::class, 'about']);
 
+Route::get('/top', [homeController::class, 'index']);
 
 
 //Laravel 8 (also new way)

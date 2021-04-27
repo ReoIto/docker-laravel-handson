@@ -13,12 +13,26 @@ class UsersController extends Controller
      */
     public function index()
     {
-      // viewsディレのusersフォルダーのindexファイルを開く
-      return view('users.index');
-    }
+      $name = "Leo";
+      $email = "leo@example.com";
 
-    public function about() {
-      return 'About us page';
+      $data = [
+        'sex' => 'male',
+        'birthday' => '1998-02-10'
+      ];
+
+      // viewsディレのusersフォルダーのindexファイルを開く
+      // return view('users.index');
+
+      // cpmpact method
+      // return view('users.index', compact('name', 'email'));
+
+      // with method
+      // return view('users.index')->with('name', $name);
+      return view('users.index')->with('data', $data);
+
+      // Directory in the view
+      //return view('users.index', ['data' => $data]);
     }
 
     /**
