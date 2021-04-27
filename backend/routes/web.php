@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,30 +14,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route that send a view
-Route::get('/', function () {
-    return view('welcome');
-});
+//Laravel 8 (new way)
+Route::get('/users', [UsersController::class, 'index']);
+Route::get('/users/about', [UsersController::class, 'about']);
+
+
+
+//Laravel 8 (also new way)
+  //Route::get('/users', 'App\Http\Controllers\UsersController@index');
+
+//Before Laravel 8 (Gonna be error)
+  //Route::get('/users', 'UsersController@index');
 
 //Route to users - string
-Route::get('/users', function () {
-  return 'Welcome to the users page.';
-});
+  // Route::get('/users', function () {
+  //   return 'Welcome to the users page.';
+  // });
 
 //Route to users - Array(JSON)
-Route::get('/users', function () {
-  return['PHP', 'HTML', 'Laravel'];
-});
+  // Route::get('/users', function () {
+  //   return['PHP', 'HTML', 'Laravel'];
+  // });
 
 //Route to users - JSON object
-Route::get('/users', function (){
-  return response()->json([
-    'name' => 'Leo',
-    'Age' => 23
-  ]);
-});
+  // Route::get('/users', function (){
+  //   return response()->json([
+  //     'name' => 'Leo',
+  //     'Age' => 23
+  //   ]);
+  // });
 
 //Route to users - function
-Route::get('/users', function () {
-  return redirect('/');
-});
+  // Route::get('/users', function () {
+  //   return redirect('/');
+  // });

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+      // viewsディレのusersフォルダーのindexファイルを開く
+      return view('users.index');
+    }
+
+    public function about() {
+      return 'About us page';
     }
 
     /**
