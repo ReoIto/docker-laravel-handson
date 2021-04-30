@@ -22,8 +22,8 @@ Route::get('/', [homeController::class, 'index']);
 //Laravel 8 (new way)
 Route::get('/users', [UsersController::class, 'index']);
 
-//Posts endpoint
-Route::get('/posts', [PostsController::class, 'index']);
+Route::resource('/', PostsController::class);
+
 
 
 
