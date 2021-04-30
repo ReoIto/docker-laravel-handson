@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\homeController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,21 @@ Route::get('/', [homeController::class, 'index']);
 
 //Laravel 8 (new way)
 Route::get('/users', [UsersController::class, 'index']);
+
+//Posts endpoint
+Route::get('/posts', [PostsController::class, 'index']);
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Pattern is integer(multiple)
 // Route::get('/users/{id}',
