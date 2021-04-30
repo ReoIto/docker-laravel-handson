@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -13,7 +14,124 @@ class PostsController extends Controller
      */
     public function index()
     {
-      return view('posts/index');
+      // return view('posts/index');
+
+      $posts = DB::select('select * from posts');
+      // 下３つは全て同じデータを持ってくる
+      // $posts = DB::select('select * from posts WHERE id = 2');
+      // $posts = DB::select('select * from posts WHERE id = ?', [2]);
+      // $posts = DB::select('select * from posts WHERE id = :id', ['id' => 2]);
+
+
+      // [array] (上と結果は同じだけど、読みやすい)
+      // id = $id データを指定
+      // $idのデータを全て持ってくる
+      // $id = 2;
+      // $posts = DB::table('posts')
+      //   ->where('id', $id)
+      //   ->get();
+
+
+      // [array] (特定のcolumnだけ持ってくる)
+      // $posts = DB::table('posts')
+      //   ->select('note')
+      //   ->get();
+
+
+      //  [array] (比較演算子でtrueのデータを持ってくる)
+      // $posts = DB::table('posts')
+      //   ->where('created_at', '>', now()->subDay())
+      //   ->get();
+
+
+      // [array] (whereがfalseだった時に他のデータを持ってくる)
+      // whereメソッド内はfalse
+      // falseだった時、orwhereメソッド内のデータを探す
+      // 全て出力
+      // $posts = DB::table('posts')
+      //   ->where('created_at', '<', now()->subDay())
+      //   ->orwhere('title', 'Prof.')
+      //   ->get();
+
+
+      // [array] (whereBetweenメソッド 指定の範囲内のものを出力する)
+      //idが2から5のデータを指定
+      //全て出力
+      // $id = 2;
+      // $posts = DB::table('posts')
+      // ->whereBetween('id', [2,5])
+      // ->get();
+
+
+      // [array] (whereNotNullメソッド 指定したcolumnのうちnullではないものを出力)
+      // $posts = DB::table('posts')
+      // ->whereNotNull('title')
+      // ->get();
+
+
+      // [array] (distinctメソッド 指定columnの中からユニークなものだけを出力)
+      // $posts = DB::table('posts')
+      // ->distinct('title')
+      // ->get();
+
+
+      // [array] (latest(ordest)メソッド created_atが最新のものが一番上にくるように並ぶ)
+      // $posts = DB::table('posts')
+      // ->latest()
+      // ->get();
+
+
+      // [array] (inRandomOrderメソッド ランダムな表示順になる)
+      // $posts = DB::table('posts')
+      // ->inRandomOrder()
+      // ->get();
+
+
+      // [array] (orderbyメソッド 指定のcolumnを指定の順にする)
+      // $posts = DB::table('posts')
+      // ->inRandomOrder('created_at', 'desc')
+      // ->get();
+
+
+      // // [array] (findメソッド 指定したidのデータを出力する)
+      // $id = 2;
+      // $posts = DB::table('posts')
+      // ->find($id);
+
+
+      // [array] (sumメソッド 合計を出力)
+      // $id = 2;
+      // $posts = DB::table('posts')
+      //   ->sum('id');
+
+
+      // [array] (avgメソッド 平均値を出力)
+      // $id = 2;
+      // $posts = DB::table('posts')
+      //   ->avg('id');
+
+
+      // [array] (updateメソッド 既存のデータを更新する)
+      // $id = 2;
+      // $posts = DB::table('posts')
+      //   ->avg('id');
+
+
+      // [array] (updateメソッド 既存のデータを更新する)
+      // $posts = DB::table('posts')
+      //   ->where('id', '=', 2)
+      //   ->update([
+      //     'title' => 'New title',
+      //     'meaning' => 'New meaning'
+      //   ]);
+
+
+      // [array] (deleteメソッド 削除)
+      $posts = DB::table('posts')
+        ->where('id', '=', 2)
+        ->delete();
+
+      dd($posts);
     }
 
     /**
