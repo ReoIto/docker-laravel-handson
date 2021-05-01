@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 class PostsController extends Controller
 {
@@ -14,9 +15,18 @@ class PostsController extends Controller
      */
     public function index()
     {
-      // return view('posts/index');
 
-      $posts = DB::select('select * from posts');
+      $posts = Post::all();
+      return view('posts.index',[
+        'posts' => $posts
+      ]);
+
+      // return view('index', [
+      //   'posts' => $posts
+      // ]);
+
+
+      // $posts = DB::select('select * from posts');
       // 下３つは全て同じデータを持ってくる
       // $posts = DB::select('select * from posts WHERE id = 2');
       // $posts = DB::select('select * from posts WHERE id = ?', [2]);
@@ -127,11 +137,14 @@ class PostsController extends Controller
 
 
       // [array] (deleteメソッド 削除)
-      $posts = DB::table('posts')
-        ->where('id', '=', 2)
-        ->delete();
+      // $posts = DB::table('posts')
+      //   ->where('id', '=', 2)
+      //   ->delete();
 
-      dd($posts);
+
+      // countメソッド
+      // print_r(Post::all()->count());
+      // print_r(Post::where('title', 'Vocab')->count());
     }
 
     /**

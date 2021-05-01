@@ -17,7 +17,7 @@ use App\Http\Controllers\PostsController;
 */
 
 // Route to top page
-Route::get('/', [homeController::class, 'index']);
+Route::get('/top', [homeController::class, 'index']);
 
 //Laravel 8 (new way)
 Route::get('/users', [UsersController::class, 'index']);
