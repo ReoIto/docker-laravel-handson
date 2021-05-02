@@ -185,7 +185,11 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+      $post = Post::find($id);
+
+      return view('posts.show')->with('post', $post);
+      
+      return redirect()->route('post.show', ['post'=>$post]);
     }
 
     /**
@@ -196,7 +200,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+      $post = Post::find($id);
+
+      return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -208,7 +214,16 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $post = Post::where('id', $id)->update([
+        'title' => $request->input('title'),
+        'meaning' => $request->input('meaning'),
+        'example' => $request->input('example'),
+        'synonyms' => $request->input('synonyms'),
+        'antonyms' => $request->input('antonyms'),
+        'note' => $request->input('note')
+      ]);
+
+      return redirect('/posts');
     }
 
     /**
