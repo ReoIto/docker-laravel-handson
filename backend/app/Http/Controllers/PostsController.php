@@ -188,7 +188,7 @@ class PostsController extends Controller
       $post = Post::find($id);
 
       return view('posts.show')->with('post', $post);
-      
+
       return redirect()->route('post.show', ['post'=>$post]);
     }
 
@@ -232,8 +232,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+      $post->delete();
+      return redirect('/posts');
     }
 }
