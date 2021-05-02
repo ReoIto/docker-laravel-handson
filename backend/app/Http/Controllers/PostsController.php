@@ -154,7 +154,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+      return view('posts.create');
     }
 
     /**
@@ -165,7 +165,16 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $post = Post::create([
+        'title' => $request->input('title'),
+        'meaning' => $request->input('meaning'),
+        'example' => $request->input('example'),
+        'synonyms' => $request->input('synonyms'),
+        'antonyms' => $request->input('antonyms'),
+        'note' => $request->input('note')
+      ]);
+
+      return redirect('/posts');
     }
 
     /**
