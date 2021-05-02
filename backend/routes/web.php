@@ -22,7 +22,7 @@ Route::get('/top', [homeController::class, 'index']);
 //Laravel 8 (new way)
 Route::get('/users', [UsersController::class, 'index']);
 
-Route::resource('/', PostsController::class);
+Route::resource('/posts', PostsController::class);
 
 
 
