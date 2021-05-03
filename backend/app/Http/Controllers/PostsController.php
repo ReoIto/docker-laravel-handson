@@ -15,8 +15,15 @@ class PostsController extends Controller
      */
     public function index()
     {
+      // 形式配列で値を受け取る
+      // $posts = Post::all()->toArray();
 
-      $posts = Post::all();
+      // Jsonで値を受け取る
+      $posts = Post::all()->toJson();
+      $posts = json_decode($posts);
+
+      var_dump($posts);
+
       return view('posts.index',[
         'posts' => $posts
       ]);
