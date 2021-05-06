@@ -19,10 +19,12 @@ class PostsController extends Controller
       // $posts = Post::all()->toArray();
 
       // Jsonで値を受け取る
-      $posts = Post::all()->toJson();
-      $posts = json_decode($posts);
+      // $posts = Post::all()->toJson();
+      // $posts = json_decode($posts);
 
-      var_dump($posts);
+      // var_dump($posts);
+
+      $posts = Post::all();
 
       return view('posts.index',[
         'posts' => $posts
