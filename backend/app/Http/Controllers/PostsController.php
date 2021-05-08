@@ -174,6 +174,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+
+      // 単語が登録される前にバリデーションをかける
+      $request->validate([
+        'title' => 'required',
+        'meaning' => 'required'
+      ]);
+
       $post = Post::create([
         'title' => $request->input('title'),
         'meaning' => $request->input('meaning'),
